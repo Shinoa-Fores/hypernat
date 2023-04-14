@@ -1,0 +1,20 @@
+{
+  "name": "hypernat",
+  "version": "1.0",
+  "description": "p2p tunneling using holepunch.",
+  "scripts": {
+    "server": "node hypernat-server.js",
+    "client": "node hypernat-client.js"
+  },
+  "author": "Shinoa Fores",
+  "license": "WFTPL",
+  "dependencies": {
+    "@hyperswarm/dht": "^6.2.1",
+    "base58-js": "^1.0.5",
+    "dotenv": "^16.0.3",
+    "keypear": "^1.1.1",
+    "pump": "^3.0.0",
+    "readline": "^1.3.0",
+    "yargs": "^17.5.1"
+  }
+}
