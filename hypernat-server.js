@@ -40,7 +40,7 @@ const relay = async () => {
                     pump(servsock, socket, servsock);
                 });
 
-                console.log('\033[31;1;4m[Hyper NAT Server]\033[0m is listening for Client connections on tcp', port);;
+                console.log('\033[31;1;4m[Hyper NAT Server]\033[0m is listening for Client connections on tcp', port);
                 server.listen(keyPair);
             }
         },
