@@ -40,7 +40,7 @@ const relay = async () => {
                     pump(servsock, socket, servsock);
                 });
 
-                console.log('\033[31;1;4m[Hyper NAT Server]\033[0m is listening for Client connections on tcp', port);
+                console.log('Hyper NAT Server is listening for client connections on: tcp', port);
                 server.listen(keyPair);
             }
         },
@@ -58,7 +58,7 @@ const relay = async () => {
                         client.send(buf);
                     })
                 });
-                console.log('\033[31;1;4m[Hyper NAT Server]\033[0m is listening for Client connections on udp', port);
+                console.log('Hyper NAT Server is listening for client connections on udp', port);
                 await server.listen(keyPair);
             },
         }
@@ -72,7 +72,7 @@ const modes = {
         const {proto, port, host, secret} = settings;
         const hash = DHT.hash(Buffer.from(secret));
         const kp = DHT.keyPair(hash);
-        console.log('\u001b[32mYOUR PUBLIC KEY FOR THIS SESSION:\033[0m', binary_to_base58(kp.publicKey));
+        console.log('\033[32;1mYOUR PUBLIC KEY FOR THIS SESSION:\033[0m', binary_to_base58(kp.publicKey));
         const rel = await relay();
         const keys = new Keychain(kp);
         const keyPair = keys.get(proto + port);
@@ -80,7 +80,7 @@ const modes = {
     }
 }
 const run = async () => {
-    console.log('[HyperNAT Server] is starting ...');
+    console.log('\033[31;1mHyperNAT server starting ...\033[0m');
     for (forwarder of schema) {
         await modes[forwarder.mode](forwarder);
     }

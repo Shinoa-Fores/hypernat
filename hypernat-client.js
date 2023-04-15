@@ -13,8 +13,8 @@ const options = {
     "schema": [
         {
             "mode": "client",
-            "proto": "tcp",
-            "port": '3000',
+            "proto": process.env.PROTO || "tcp",
+            "port": process.env.PORT || '3000',
             "publicKey": process.env.PEER || argv.peer
         }    
     ]
@@ -38,7 +38,7 @@ const relay = async () => {
         },
         udp: {
             client: async (publicKey, port) => {
-                console.log('onnecting to udp', port);
+                console.log('Connecting to udp', port);
                 const conn = await node.connect(publicKey);
                 await new Promise(res => conn.on('open', res));
                 console.log('connection open');
@@ -73,8 +73,8 @@ const modes = {
     }
 }
 const run = async () => {
-    console.log('\033[32;1mStarting up ...\033[0m');
-    console.log('\u001b[32mPEER:\033[0m', argv.peer)
+    console.log('\033[31;1mHyperNAT client starting ...\033[0m');
+    console.log('\033[32;1mPEER:\033[0m', argv.peer)
     for (forwarder of schema) {
         await modes[forwarder.mode](forwarder);
     }
