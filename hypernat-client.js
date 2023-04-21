@@ -1,4 +1,4 @@
-// hypernat-client.js
+#!/usr/bin/env node
 
 require('dotenv').config();
 
